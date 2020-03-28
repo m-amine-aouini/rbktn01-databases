@@ -23,7 +23,7 @@ CREATE TABLE messages (
   id int NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(101) NOT NULL,
   roomname VARCHAR(65) NOT NULL,
-  message VARCHAR(255) NOT NULL
+  text VARCHAR(255) NOT NULL
 );
 
 /*  Execute this file from the command line by typing:

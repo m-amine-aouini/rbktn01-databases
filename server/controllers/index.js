@@ -7,16 +7,16 @@ module.exports = {
 
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-
-      let { username, message, roomname } = req.body;
-
-      mysql.query('INSERT INTO messages SET ?', req.body, (err, res) => {
+      mysql.query('INSERT INTO messages SET ?', {
+        text: message,
+        username,
+        roomname
+      }, (err, res) => {
         if (err) {
           throw err;
         }
         console.log('message inserted');
       });
-
 
     } // a function which handles posting a message to the database
   },
@@ -25,8 +25,6 @@ module.exports = {
     // Ditto as above
     get: function (req, res) { },
     post: function (req, res) {
-      let { username } = req.body;
-
       mysql.query('INSERT INTO users SET ?', req.body, (err, res) => {
         if (err) {
           throw err;
