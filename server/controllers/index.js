@@ -7,6 +7,7 @@ module.exports = {
 
     }, // a function which handles a get request for all messages
     post: function (req, res) {
+      let { message, username, roomname } = req.body;
       mysql.query('INSERT INTO messages SET ?', {
         text: message,
         username,
@@ -14,9 +15,11 @@ module.exports = {
       }, (err, res) => {
         if (err) {
           throw err;
+
         }
         console.log('message inserted');
       });
+      res.end();
 
     } // a function which handles posting a message to the database
   },
@@ -31,6 +34,7 @@ module.exports = {
         }
         console.log('user inserted');
       });
+      res.end();
     }
   }
 };
