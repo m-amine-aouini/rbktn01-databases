@@ -5,6 +5,13 @@ module.exports = {
   messages: {
     get: function (req, res) {
 
+      mysql.query('SELECT * FROM messages', (err, results) => {
+        if (err) {
+          throw err;
+        }
+        res.send({ results });
+      });
+
     }, // a function which handles a get request for all messages
     post: function (req, res) {
       let { message, username, roomname } = req.body;
@@ -26,7 +33,14 @@ module.exports = {
 
   users: {
     // Ditto as above
-    get: function (req, res) { },
+    get: function (req, res) {
+      mysql.query('SELECT * FROM users', (err, results) => {
+        if (err) {
+          throw err;
+        }
+        res.send({ results });
+      });
+    },
     post: function (req, res) {
       mysql.query('INSERT INTO users SET ?', req.body, (err, res) => {
         if (err) {
